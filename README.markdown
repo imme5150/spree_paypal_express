@@ -53,11 +53,6 @@ eCheck payments are now fully supported and PayPal's Instant Payment Notificatio
 
      https://www.yourstore.com/paypal_notify
 
-3. Enable auto_capture within Spree (as eCheck payments are only supported for purchase and not authorize requests).
-
-     Spree::Config.set(:auto_capture => true)
-
-
 
 Configuration
 =============
@@ -135,11 +130,5 @@ Running Specs
 
 NOTES
 =====
-    
-To automatically capture funds or enable accepting eCheck payments, add this to you site extension's activate method:
 
-    if Spree::Config.instance
-      Spree::Config[:auto_capture] = true
-    end
-    
 [1] If you check the review checkbox in the admin section for Payment Methods/Paypal Express, the flow is slightly different. Instead of Pay Now on Paypal's order details page, it now says Continue. And the user is directed back to the spree app's Confirmation page showing a place order button. Use whichever suits your needs best. Personally, I leave review unchecked to cut down on the steps in the checkout flow.

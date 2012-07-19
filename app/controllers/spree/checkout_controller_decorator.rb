@@ -8,7 +8,7 @@ module Spree
       opts.merge!(address_options(@order))
       @gateway = paypal_gateway
 
-      if Spree::Config[:auto_capture]
+      if true # Spree::Config[:auto_capture]
         @ppx_response = @gateway.setup_purchase(opts[:money], opts)
       else
         @ppx_response = @gateway.setup_authorization(opts[:money], opts)
@@ -32,7 +32,7 @@ module Spree
       opts.merge!(address_options(@order))
       @gateway = paypal_gateway
 
-      if Spree::Config[:auto_capture]
+      if true # Spree::Config[:auto_capture]
         @ppx_response = @gateway.setup_purchase(opts[:money], opts)
       else
         @ppx_response = @gateway.setup_authorization(opts[:money], opts)
@@ -115,7 +115,8 @@ module Spree
       opts = { :token => params[:token], :payer_id => params[:PayerID] }.merge all_opts(@order, params[:payment_method_id], 'payment' )
       gateway = paypal_gateway
 
-      method = Spree::Config[:auto_capture] ? :purchase : :authorize
+      # method = Spree::Config[:auto_capture] ? :purchase : :authorize
+      method =  :purchase
       ppx_auth_response = gateway.send(method, (@order.total*100).to_i, opts)
 
       paypal_account = Spree::PaypalAccount.find_by_payer_id(params[:PayerID])
