@@ -177,7 +177,7 @@ module Spree
 
     def redirect_to_paypal_express_form_if_needed
       return unless (params[:state] == "payment")
-      return unless params[:order][:payments_attributes]
+      return unless params[:order] && params[:order][:payments_attributes]
 
       if params[:order][:coupon_code]
         @order.update_attributes(object_params)
